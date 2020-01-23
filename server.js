@@ -26,6 +26,12 @@ const requestHandler = (request, response) => {
       https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Complete_list_of_MIME_types
 
      */
+    try{
+        response.write(listingData);
+    }
+    catch(err){
+        response.status(404).end();
+    }
 };
 
 fs.readFile('listings.json', 'utf8', (err, data) => {
@@ -40,13 +46,16 @@ fs.readFile('listings.json', 'utf8', (err, data) => {
      */
 
     // Check for errors
-
+    if(err) throw err;
 
     // Save the sate in the listingData variable already defined
-
+    listingData = JSON.parse(data);
 
     // Creates the server
-
+    server = http.createServer(requestHandler);
     // Start the server
-
+    server.listen(port, () => {
+        console.log('yes');
+    });
+    console.log('is the server listening?');
 });
