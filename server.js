@@ -31,6 +31,7 @@ const requestHandler = (request, response) => {
     }
     catch(err){
         response.status(404).end();
+        console.log('bad gateway error');
     }
 };
 
