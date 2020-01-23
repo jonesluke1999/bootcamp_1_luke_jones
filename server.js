@@ -28,6 +28,7 @@ const requestHandler = (request, response) => {
      */
     try{
         response.write(listingData);
+        response.end();
     }
     catch(err){
         response.status(404).end();
