@@ -54,10 +54,9 @@ fs.readFile('listings.json', 'utf8', (err, data) => {
     listingData = JSON.parse(data);
 
     // Creates the server
-    server = http.createServer(requestHandler);
-    // Start the server
+    const server = http.createServer(requestHandler);
     server.listen(port, () => {
-        console.log(`Server listening on: http://127.0.0.1: ${port}`);
+        console.log(`Server listening on: http://127.0.0.1:${port}`);
     });
-    console.log('is the server listening?');
+    console.log('Is the server started?');
 });
