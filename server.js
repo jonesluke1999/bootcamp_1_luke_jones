@@ -10,7 +10,7 @@ let listingData, server;
 const requestHandler = (request, response) => {
     const parsedUrl = url.parse(request.url);
     if(request.method === 'GET' && parsedUrl.path === '/listings'){
-		response.end(listingData);  
+		response.end(JSON.stringify(listingData));  
     } 
 	else{
 			response.end('404 Bad gateway error');
