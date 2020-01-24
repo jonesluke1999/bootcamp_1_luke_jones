@@ -9,13 +9,14 @@ let listingData, server;
 
 const requestHandler = (request, response) => {
     const parsedUrl = url.parse(request.url);
-    if(request.method === 'GET' && parsedUrl.path === '/listings'){
+    //if(request.method === 'GET' && parsedUrl.path === '/listings'){
 		response.end(JSON.stringify(listingData));  
-    } 
+    /*} 
 	else{
 			response.write('404');
 			response.end('Bad gateway error');
 			}
+			*/
    
     /*
       Your request handler should send listingData in the JSON format as a response if a GET request
@@ -47,7 +48,6 @@ fs.readFile('listings.json', 'utf8', (err, data) => {
      */
 
     // Check for errors
-    if(err) throw err;
 
     // Save the sate in the listingData variable already defined
     listingData = JSON.parse(data);
