@@ -9,14 +9,13 @@ let listingData, server;
 
 const requestHandler = (request, response) => {
     const parsedUrl = url.parse(request.url);
-    //if(request.method === 'GET' && parsedUrl.path === '/listings'){
-		response.end(JSON.stringify(listingData));  
-    /*} 
+    if(request.method === 'GET' && parsedUrl.path === '/listings'){
+		response.end(listingData);  
+    } 
 	else{
-			response.write('404');
-			response.end('Bad gateway error');
-			}
-			*/
+			response.end('404 Bad gateway error');
+	}
+			
    
     /*
       Your request handler should send listingData in the JSON format as a response if a GET request
@@ -55,7 +54,7 @@ fs.readFile('listings.json', 'utf8', (err, data) => {
     // Creates the server
     const server = http.createServer(requestHandler);
     server.listen(port, () => {
-        console.log('the server is started');
+        console.log('server listening on: http//localhost:5000');
     });
     console.log('Is the server started?');
 });
