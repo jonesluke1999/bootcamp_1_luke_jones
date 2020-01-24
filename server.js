@@ -9,7 +9,14 @@ let listingData, server;
 
 const requestHandler = (request, response) => {
     const parsedUrl = url.parse(request.url);
-
+    if(request.method === 'GET' && parsedUrl.path === '/listings'){
+		response.end(JSON.stringify(listingData));  
+    } 
+	else{
+			response.write('404');
+			response.end('Bad gateway error');
+			}
+   
     /*
       Your request handler should send listingData in the JSON format as a response if a GET request
       is sent to the '/listings' path. Otherwise, it should send a 404 error.
@@ -26,9 +33,6 @@ const requestHandler = (request, response) => {
       https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Complete_list_of_MIME_types
 
      */
-    if(parsedUrl.pathname == '/listings' && request.method == 'GET'){
-        
-    }
 };
 
 fs.readFile('listings.json', 'utf8', (err, data) => {
